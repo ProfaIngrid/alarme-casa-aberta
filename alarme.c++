@@ -1,51 +1,55 @@
-int sensor = A0; // Pino do sensor de luminosidade
+//armazenamento dos pinos
+int sensor = A0; 
 int luminosidade = 0; 
-int ledAzul = 8; // Pino do led azul
-int ledLaranja = 2; // Pino do led laranja
+int ledAzul = 8; 
+int ledLaranja = 2; 
 
 void setup() {
-    Serial.begin(9600); //Inicializa a comunicação serial
-  	pinMode(ledAzul, OUTPUT); // Configura o pino do LED como saída
-    pinMode(ledLaranja, OUTPUT); // Configura o pino do LED como saída
+    //Inicializa a comunicação serial
+    Serial.begin(9600); 
+
+    // configuração dos pinos dos LED's como saída
+  	pinMode(ledAzul, OUTPUT); 
+    pinMode(ledLaranja, OUTPUT);
 }
 
 void loop() {
     int luminosidade = analogRead(sensor); //Lê o valor do sensor
-    Serial.println(luminosidade); //Imprime o valor da luminosidade
+    Serial.println(luminosidade); //Imprime o valor coletado
 
     if (luminosidade > 20) {
-        // Loop para criar som de sirene com LEDs alternados
-        // Primeiro, acenda o LED azul e faça o beep
+        // Loop para criar som de sirene com LEDs
+        // Acende o LED azul e emite beep
         for (int freq = 500; freq <= 1000; freq += 10) {
             digitalWrite(ledAzul, HIGH); // Acende o LED azul
-            beep(freq, 15); // Emite o som com a frequência atual
+            beep(freq, 15); // Emite o som
             digitalWrite(ledAzul, LOW); // Apaga o LED azul
-            delay(10); // Pequeno atraso para garantir que o LED apagado seja visível antes de acender o próximo
+            delay(10); 
+        }
+
+        // Acende o LED laranja e emite beep
+        for (int freq = 500; freq <= 1000; freq += 10) {
+            digitalWrite(ledLaranja, HIGH); // Acende o LED laranja
+            beep(freq, 15); // Emite o som
+            digitalWrite(ledLaranja, LOW); // Apaga o LED laranja
+            delay(10); 
+        }
+
+        // Repete o processo na direção inversa da frequência
+        // Acende o LED azul e emite beep
+        for (int freq = 1000; freq >= 500; freq -= 10) {
+            igitalWrite(ledAzul, HIGH); // Acende o LED azul
+            beep(freq, 15); // Emite o som
+            digitalWrite(ledAzul, LOW); // Apaga o LED azul
+            delay(10); 
         }
 
         // Em seguida, acenda o LED laranja e faça o beep
-        for (int freq = 500; freq <= 1000; freq += 10) {
-            digitalWrite(ledLaranja, HIGH); // Acende o LED laranja
-            beep(freq, 15); // Emite o som com a frequência atual
-            digitalWrite(ledLaranja, LOW); // Apaga o LED laranja
-            delay(10); // Pequeno atraso para garantir que o LED apagado seja visível antes de acender o próximo
-        }
-
-        // Repetir o processo na direção inversa da frequência
-        // Primeiro, acenda o LED azul e faça o beep
         for (int freq = 1000; freq >= 500; freq -= 10) {
-            digitalWrite(ledAzul, HIGH); // Acende o LED azul
-            beep(freq, 15); // Emite o som com a frequência atual
-            digitalWrite(ledAzul, LOW); // Apaga o LED azul
-            delay(10); // Pequeno atraso para garantir que o LED apagado seja visível antes de acender o próximo
-        }
-
-        // Em seguida, acenda o LED laranja e faça o beep
-        for (int freq = 1000; freq >= 500; freq -= 10) {
-            digitalWrite(ledLaranja, HIGH); // Acende o LED laranja
-            beep(freq, 15); // Emite o som com a frequência atual
+             digitalWrite(ledLaranja, HIGH); // Acende o LED laranja
+            beep(freq, 15); // Emite o som
             digitalWrite(ledLaranja, LOW); // Apaga o LED laranja
-            delay(10); // Pequeno atraso para garantir que o LED apagado seja visível antes de acender o próximo
+            delay(10); 
         }
     }
 
