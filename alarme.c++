@@ -32,23 +32,23 @@ void loop() {
             digitalWrite(ledLaranja, HIGH); // Acende o LED laranja
             beep(freq, 15); // Emite o som
             digitalWrite(ledLaranja, LOW); // Apaga o LED laranja
-            delay(10); 
+            delay(10); // 
         }
 
         // Repete o processo na direção inversa da frequência
         // Acende o LED azul e emite beep
         for (int freq = 1000; freq >= 500; freq -= 10) {
-            igitalWrite(ledAzul, HIGH); // Acende o LED azul
-            beep(freq, 15); // Emite o som
-            digitalWrite(ledAzul, LOW); // Apaga o LED azul
+            digitalWrite(ledAzul, HIGH); 
+            beep(freq, 15); 
+            digitalWrite(ledAzul, LOW); 
             delay(10); 
         }
 
         // Em seguida, acenda o LED laranja e faça o beep
         for (int freq = 1000; freq >= 500; freq -= 10) {
-             digitalWrite(ledLaranja, HIGH); // Acende o LED laranja
-            beep(freq, 15); // Emite o som
-            digitalWrite(ledLaranja, LOW); // Apaga o LED laranja
+            digitalWrite(ledLaranja, HIGH); 
+            beep(freq, 15); 
+            digitalWrite(ledLaranja, LOW); 
             delay(10); 
         }
     }
